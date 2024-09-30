@@ -1,0 +1,14 @@
+{
+  "language": "Language",
+  "theme": "Theme",
+  "settings": "Settings",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "version": "Version",
+  "rateUs": "Rate us",
+  "about": "About",
+  "share": "Share",
+  "error": "Error",
+  "shareApp": "Share app"
+}
