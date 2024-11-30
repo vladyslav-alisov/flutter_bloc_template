@@ -4,13 +4,28 @@ import 'package:flutter_bloc_template/core/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-class InitErrorScreen extends StatelessWidget {
-  const InitErrorScreen({
-    super.key,
-    required this.error,
-  });
+class InitScreen extends StatefulWidget {
+  const InitScreen({super.key});
 
-  final Object error;
+  @override
+  State<InitScreen> createState() => _InitScreenState();
+}
+
+class _InitScreenState extends State<InitScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _initData());
+  }
+
+  Future<void> _initData() async {
+    try {
+      await Future.delayed(Duration(seconds: 2), () => print("Init completed"));
+      if (mounted) context.go(AppRoutes.settings.path);
+    } catch (e) {
+      if (mounted) context.go(AppRoutes.initError.path, extra: e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +35,15 @@ class InitErrorScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-              Assets.animations.error,
+              Assets.animations.initLoading,
               height: 400,
               width: 400,
             ),
             const SizedBox(height: 20),
             Text(
-              error.toString(),
+              "Loading your data...",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => context.go(AppRoutes.init.path),
-              child: Text("Try again"),
             ),
           ],
         ),

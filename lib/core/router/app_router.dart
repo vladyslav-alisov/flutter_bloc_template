@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_template/core/router/app_routes.dart';
-import 'package:flutter_bloc_template/presentation/init/init_error_screen.dart';
-import 'package:flutter_bloc_template/presentation/init/init_screen.dart';
+import 'package:flutter_bloc_template/features/app_settings/presentation/settings_screen.dart';
+import 'package:flutter_bloc_template/init/init_error_screen.dart';
+import 'package:flutter_bloc_template/init/init_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -24,6 +25,10 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.initError.path,
           builder: (context, state) => InitErrorScreen(error: state.extra as dynamic),
+        ),
+        GoRoute(
+          path: AppRoutes.settings.path,
+          builder: (context, state) => SettingsScreen(),
         ),
       ],
     );

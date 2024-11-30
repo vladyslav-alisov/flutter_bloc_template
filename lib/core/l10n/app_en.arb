@@ -10,5 +10,8 @@
   "about": "About",
   "share": "Share",
   "error": "Error",
-  "shareApp": "Share app"
+  "shareApp": "Share app",
+  "sendFeedback": "Send feedback",
+  "tryAgain": "Try again",
+  "feedback": "Feedback"
 }

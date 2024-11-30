@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_template/app/locales.dart';
 import 'package:flutter_bloc_template/core/const/assets.gen.dart';
 import 'package:lottie/lottie.dart';
 
@@ -12,11 +11,8 @@ class AppError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      localizationsDelegates: localizationsDelegates,
+      supportedLocales: supportedLocales,
       home: Scaffold(
         body: Center(
           child: Column(
@@ -35,8 +31,8 @@ class AppError extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => exit(1),
-                child: Text("Close app"),
+                onPressed: () {},
+                child: Text("Send feedback"),
               ),
             ],
           ),
