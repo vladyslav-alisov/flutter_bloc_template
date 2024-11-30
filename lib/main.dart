@@ -8,9 +8,6 @@ import 'package:flutter_bloc_template/features/app_settings/presentation/languag
 import 'package:flutter_bloc_template/features/app_settings/presentation/theme_cubit/theme_cubit.dart';
 import 'package:flutter_bloc_template/init_dependencies.dart';
 
-const String appStoreUrl = "https://apps.apple.com/tr/app/flickermail/id6476929326";
-const String playMarketUrl = "https://play.google.com/store/apps/details?id=com.flickermail.app";
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
