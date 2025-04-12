@@ -11,5 +11,6 @@ abstract interface class AuthRepository {
   Future<Either<Failure, AuthAppUser>> signIn({required String email, required String password});
   Future<Either<Failure, AuthAppUser>> signUp({required String email, required String password});
   Future<Either<Failure, void>> logout();
+  Future<Either<Failure, AuthAppUser>> signInAnonymously();
   Future<Either<Failure, AuthAppUser?>> getCurrentUser();
 }

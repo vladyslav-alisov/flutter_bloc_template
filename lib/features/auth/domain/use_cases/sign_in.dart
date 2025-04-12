@@ -5,10 +5,10 @@ import 'package:fpdart/fpdart.dart';
 import '../../../../core/error/failure.dart';
 import '../repositories/auth_repository.dart';
 
-class SignIn implements UseCase<AuthAppUser, AuthParams> {
+class SignInAnonymously implements UseCase<AuthAppUser, AuthParams> {
   final AuthRepository repository;
 
-  SignIn(this.repository);
+  SignInAnonymously(this.repository);
 
   @override
   Future<Either<Failure, AuthAppUser>> call(AuthParams params) {
