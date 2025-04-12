@@ -43,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: ListView(
           children: [
             LanguageWidget(),
             const ThemeModeWidget(),
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             SettingsListTile(
               leadingIcon: Icons.info_outline,
-              title: "About",
+              title: context.l10n.about,
               onTap: () => _onAboutPress(context),
             ),
           ],
