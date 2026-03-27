@@ -21,7 +21,8 @@ class AppSettingsRepositoryImpl implements AppSettingsRepository {
   @override
   Future<Locale> getLanguage() async {
     try {
-      String? langCode = await _appSettingsLocalDataSource.getSetting(_langCodeKey);
+      String? langCode =
+          await _appSettingsLocalDataSource.getSetting(_langCodeKey);
       return Locale(langCode ?? "en");
     } catch (e) {
       /// TODO: send error with analytics
@@ -49,7 +50,8 @@ class AppSettingsRepositoryImpl implements AppSettingsRepository {
   @override
   Future<Either<Failure, Locale>> saveLanguage(Locale locale) async {
     try {
-      await _appSettingsLocalDataSource.saveSetting(_langCodeKey, locale.languageCode);
+      await _appSettingsLocalDataSource.saveSetting(
+          _langCodeKey, locale.languageCode);
       return right(locale);
     } catch (e) {
       return left(Failure("Persistence error"));
@@ -66,20 +68,24 @@ class AppSettingsRepositoryImpl implements AppSettingsRepository {
     }
   }
 
-
   ///todo: init it somewhere
   @override
   Future<AppInfo> getAppInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String? lastRecordedVersion = await _appSettingsLocalDataSource.getSetting(_appVersion);
+    String? lastRecordedVersion =
+        await _appSettingsLocalDataSource.getSetting(_appVersion);
 
-    if (lastRecordedVersion != null && lastRecordedVersion == packageInfo.version) {
-      String? lastVersionUpdateStr = await _appSettingsLocalDataSource.getSetting(_lastVersionUpdate);
+    if (lastRecordedVersion != null &&
+        lastRecordedVersion == packageInfo.version) {
+      String? lastVersionUpdateStr =
+          await _appSettingsLocalDataSource.getSetting(_lastVersionUpdate);
 
       late DateTime lastVersionUpdate;
-      if (lastVersionUpdateStr == null || DateTime.tryParse(lastVersionUpdateStr) == null) {
+      if (lastVersionUpdateStr == null ||
+          DateTime.tryParse(lastVersionUpdateStr) == null) {
         lastVersionUpdate = DateTime.now();
-        await _appSettingsLocalDataSource.saveSetting(_lastVersionUpdate, lastVersionUpdate);
+        await _appSettingsLocalDataSource.saveSetting(
+            _lastVersionUpdate, lastVersionUpdate);
       } else {
         lastVersionUpdate = DateTime.parse(lastVersionUpdateStr);
       }
@@ -94,8 +100,10 @@ class AppSettingsRepositoryImpl implements AppSettingsRepository {
     } else {
       DateTime now = DateTime.now();
       String currentVersion = packageInfo.version;
-      await _appSettingsLocalDataSource.saveSetting(_appVersion, currentVersion);
-      await _appSettingsLocalDataSource.saveSetting(_lastVersionUpdate, now.toString());
+      await _appSettingsLocalDataSource.saveSetting(
+          _appVersion, currentVersion);
+      await _appSettingsLocalDataSource.saveSetting(
+          _lastVersionUpdate, now.toString());
       return AppInfo(
         packageInfo.appName,
         packageInfo.packageName,
@@ -105,7 +113,5 @@ class AppSettingsRepositoryImpl implements AppSettingsRepository {
         now,
       );
     }
-
-    throw UnimplementedError();
   }
 }

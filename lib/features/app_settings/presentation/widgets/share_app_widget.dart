@@ -7,7 +7,8 @@ import 'package:flutter_bloc_template/features/app_settings/presentation/widgets
 import 'package:share_plus/share_plus.dart';
 
 class ShareAppWidget extends StatefulWidget {
-  const ShareAppWidget({super.key, required this.appStoreUrl, required this.playMarketUrl});
+  const ShareAppWidget(
+      {super.key, required this.appStoreUrl, required this.playMarketUrl});
 
   final String appStoreUrl;
   final String playMarketUrl;
@@ -30,7 +31,7 @@ class _ShareAppWidgetState extends State<ShareAppWidget> {
     setState(() => _isShareLoading = true);
     try {
       String store = Platform.isIOS ? widget.appStoreUrl : widget.playMarketUrl;
-      await Share.share(store);
+      await SharePlus.instance.share(ShareParams(text: store));
     } catch (e) {
       if (!mounted) return;
       AlertDialog(

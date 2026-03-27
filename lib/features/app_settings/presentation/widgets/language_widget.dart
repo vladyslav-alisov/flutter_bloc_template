@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_template/app/locales.dart' as app_localizations;
 import 'package:flutter_bloc_template/core/l10n/translate_extension.dart';
 import 'package:flutter_bloc_template/features/app_settings/presentation/language_cubit/language_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageWidget extends StatelessWidget {
   LanguageWidget({super.key}) {
-    _supportedLocales.addAll(AppLocalizations.supportedLocales);
+    _supportedLocales.addAll(app_localizations.supportedLocales);
   }
 
   final List<Locale> _supportedLocales = [];
@@ -23,10 +23,13 @@ class LanguageWidget extends StatelessWidget {
             _supportedLocales.length,
             (index) => CheckboxListTile(
               title: Text(_supportedLocales[index].fullName),
-              value: _supportedLocales[index].languageCode == state.locale.languageCode,
+              value: _supportedLocales[index].languageCode ==
+                  state.locale.languageCode,
               onChanged: (val) {
                 if (state.isLoading) return;
-                context.read<LanguageCubit>().updateLanguage(_supportedLocales[index]);
+                context
+                    .read<LanguageCubit>()
+                    .updateLanguage(_supportedLocales[index]);
               },
             ),
           ),

@@ -20,7 +20,8 @@ class _InitScreenState extends State<InitScreen> {
 
   Future<void> _initData() async {
     try {
-      await Future.delayed(Duration(seconds: 2), () => print("Init completed"));
+      await Future.delayed(
+          Duration(seconds: 2), () => debugPrint("Init completed"));
       if (mounted) context.go(AppRoutes.settings.path);
     } catch (e) {
       if (mounted) context.go(AppRoutes.initError.path, extra: e.toString());

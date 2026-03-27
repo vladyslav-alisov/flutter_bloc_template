@@ -18,7 +18,6 @@ class SettingsListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      horizontalTitleGap: 0,
       trailing: trailing ??
           const Icon(
             Icons.arrow_forward_ios_outlined,
